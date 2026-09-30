@@ -1,0 +1,50 @@
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { cores } from '../theme/cores';
+
+type BotaoProps = {
+  texto: string;
+  onPress: () => void;
+  disabled?: boolean;
+  variante?: 'primario' | 'secundario';
+};
+
+export function Botao({ texto, onPress, disabled = false, variante = 'primario' }: BotaoProps) {
+  const secundario = variante === 'secundario';
+
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityState={{ disabled }}
+      style={({ pressed }) => [
+        styles.botao,
+        secundario && styles.secundario,
+        disabled && styles.desabilitado,
+        pressed && styles.pressionado,
+      ]}
+    >
+      <Text style={[styles.texto, secundario && styles.textoSecundario]}>{texto}</Text>
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  botao: {
+    minHeight: 48,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: cores.acao,
+  },
+  secundario: {
+    backgroundColor: cores.superficie,
+    borderWidth: 1,
+    borderColor: cores.acao,
+  },
+  desabilitado: { opacity: 0.5 },
+  pressionado: { opacity: 0.8 },
+  texto: { color: '#ffffff', fontSize: 16, fontWeight: '600' },
+  textoSecundario: { color: cores.acao },
+});
