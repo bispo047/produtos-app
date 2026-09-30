@@ -1,23 +1,34 @@
-import { Link } from 'expo-router';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { useRouter } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
+import { Botao } from '../components/Botao';
 import { SecaoProdutos } from '../components/SecaoProdutos';
 import { Tela } from '../components/Tela';
 import { useProdutos } from '../context/ProdutosContext';
-import { cores } from '../theme/cores';
+import { cores, fontes } from '../theme/cores';
+
+function plural(quantidade: number, singular: string, plural: string) {
+  return `${quantidade} ${quantidade === 1 ? singular : plural}`;
+}
 
 export default function TelaInicial() {
   const { produtos } = useProdutos();
+  const router = useRouter();
 
   const ativos = produtos.filter((produto) => produto.ativo);
   const inativos = produtos.filter((produto) => !produto.ativo);
 
   return (
     <Tela>
-      <Link href="/cadastro" asChild>
-                <Pressable accessibilityRole="button" style={styles.botao}>
-          <Text style={styles.botaoTexto}>Novo produto</Text>
-        </Pressable>
-      </Link>
+      <View style={styles.resumo}>
+        <Text style={styles.resumoTitulo}>Seu catálogo</Text>
+        <Text style={styles.resumoTexto}>
+          {plural(produtos.length, 'produto', 'produtos')} ·{' '}
+          {plural(ativos.length, 'ativo', 'ativos')} ·{' '}
+          {plural(inativos.length, 'inativo', 'inativos')}
+        </Text>
+      </View>
+
+      <Botao texto="Novo produto" onPress={() => router.push('/cadastro')} />
 
       <SecaoProdutos
         titulo="Produtos ativos"
@@ -35,13 +46,12 @@ export default function TelaInicial() {
 }
 
 const styles = StyleSheet.create({
-  botao: {
-    minHeight: 48,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: cores.acao,
+  resumo: { gap: 4, paddingVertical: 8 },
+  resumoTitulo: {
+    fontFamily: fontes.titulo,
+    fontSize: 28,
+    fontWeight: '700',
+    color: cores.texto,
   },
-  pressionado: { opacity: 0.8 },
-  botaoTexto: { color: '#ffffff', fontSize: 16, fontWeight: '600' },
+  resumoTexto: { fontSize: 15, color: cores.textoApoio },
 });

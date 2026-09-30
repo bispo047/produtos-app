@@ -32,19 +32,19 @@ export function Botao({ texto, onPress, disabled = false, variante = 'primario' 
 const styles = StyleSheet.create({
   botao: {
     minHeight: 48,
-    paddingHorizontal: 16,
-    borderRadius: 8,
+    paddingHorizontal: 20,
+    borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: cores.acao,
+    backgroundColor: cores.destaque,
   },
   secundario: {
-    backgroundColor: cores.superficie,
+    backgroundColor: cores.superficieAlta,
     borderWidth: 1,
-    borderColor: cores.acao,
+    borderColor: cores.borda,
   },
-  desabilitado: { opacity: 0.5 },
+  desabilitado: { opacity: 0.35 },
   pressionado: { opacity: 0.8 },
-  texto: { color: '#ffffff', fontSize: 16, fontWeight: '600' },
-  textoSecundario: { color: cores.acao },
+  texto: { color: cores.textoSobreDestaque, fontSize: 16, fontWeight: '700' },
+  textoSecundario: { color: cores.texto },
 });

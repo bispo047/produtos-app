@@ -12,9 +12,13 @@ type SecaoProdutosProps = {
 export function SecaoProdutos({ titulo, produtos, mensagemVazia }: SecaoProdutosProps) {
   return (
     <View style={styles.secao}>
-      <Text style={styles.titulo} accessibilityRole="header">
-        {titulo}
-      </Text>
+      <View style={styles.cabecalho}>
+        <Text style={styles.titulo} accessibilityRole="header">
+          {titulo}
+        </Text>
+        <Text style={styles.contagem}>{produtos.length}</Text>
+      </View>
+
       {produtos.length === 0 ? (
         <Text style={styles.vazio}>{mensagemVazia}</Text>
       ) : (
@@ -25,7 +29,22 @@ export function SecaoProdutos({ titulo, produtos, mensagemVazia }: SecaoProdutos
 }
 
 const styles = StyleSheet.create({
-  secao: { gap: 8 },
-  titulo: { fontSize: 20, fontWeight: '700', color: cores.texto },
-  vazio: { fontSize: 15, color: cores.textoApoio, fontStyle: 'italic' },
+  secao: { gap: 10 },
+  cabecalho: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    paddingBottom: 6,
+    borderBottomWidth: 1,
+    borderBottomColor: cores.borda,
+  },
+  titulo: {
+    fontSize: 13,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
+    color: cores.textoApoio,
+  },
+  contagem: { fontSize: 13, color: cores.textoApoio },
+  vazio: { fontSize: 15, color: cores.textoApoio, paddingVertical: 8 },
 });

@@ -40,83 +40,102 @@ export default function TelaCadastro() {
 
   return (
     <Tela>
-      <View style={styles.campo}>
-        <Text style={styles.rotulo} nativeID="rotulo-nome">
-          Nome do produto
-        </Text>
-        <TextInput
-          style={[styles.entrada, tocado.nome && erroNome && styles.entradaErro]}
-          value={nome}
-          onChangeText={(texto) => {
-            setNome(texto);
-            setTocado((atual) => ({ ...atual, nome: true }));
-          }}
-          onBlur={() => setTocado((atual) => ({ ...atual, nome: true }))}
-          placeholder="Ex.: Arroz 1 kg"
-          accessibilityLabel="Nome do produto"
-          accessibilityLabelledBy="rotulo-nome"
-        />
-        {tocado.nome && erroNome && (
-          <Text style={styles.erro} accessibilityLiveRegion="polite">
-            {erroNome}
+      <View style={styles.cartao}>
+        <View style={styles.campo}>
+          <Text style={styles.rotulo} nativeID="rotulo-nome">
+            Nome do produto
           </Text>
-        )}
-      </View>
+          <TextInput
+            style={[styles.entrada, tocado.nome && erroNome && styles.entradaErro]}
+            value={nome}
+            onChangeText={(texto) => {
+              setNome(texto);
+              setTocado((atual) => ({ ...atual, nome: true }));
+            }}
+            onBlur={() => setTocado((atual) => ({ ...atual, nome: true }))}
+            placeholder="Ex.: Arroz 1 kg"
+            placeholderTextColor={cores.textoApoio}
+            accessibilityLabel="Nome do produto"
+            accessibilityLabelledBy="rotulo-nome"
+          />
+          {tocado.nome && erroNome && (
+            <Text style={styles.erro} accessibilityLiveRegion="polite">
+              {erroNome}
+            </Text>
+          )}
+        </View>
 
-      <View style={styles.campo}>
-        <Text style={styles.rotulo} nativeID="rotulo-preco">
-          Preço (R$)
-        </Text>
-        <TextInput
-          style={[styles.entrada, tocado.preco && erroPreco && styles.entradaErro]}
-          value={preco}
-          onChangeText={(texto) => {
-            setPreco(texto);
-            setTocado((atual) => ({ ...atual, preco: true }));
-          }}
-          onBlur={() => setTocado((atual) => ({ ...atual, preco: true }))}
-          placeholder="Ex.: 12,50"
-          accessibilityLabel="Preço em reais"
-          accessibilityLabelledBy="rotulo-preco"
-        />
-        {tocado.preco && erroPreco && (
-          <Text style={styles.erro} accessibilityLiveRegion="polite">
-            {erroPreco}
+        <View style={styles.campo}>
+          <Text style={styles.rotulo} nativeID="rotulo-preco">
+            Preço (R$)
           </Text>
-        )}
-      </View>
+          <TextInput
+            style={[styles.entrada, tocado.preco && erroPreco && styles.entradaErro]}
+            value={preco}
+            onChangeText={(texto) => {
+              setPreco(texto);
+              setTocado((atual) => ({ ...atual, preco: true }));
+            }}
+            onBlur={() => setTocado((atual) => ({ ...atual, preco: true }))}
+            placeholder="Ex.: 12,50"
+            placeholderTextColor={cores.textoApoio}
+            accessibilityLabel="Preço em reais"
+            accessibilityLabelledBy="rotulo-preco"
+          />
+          {tocado.preco && erroPreco && (
+            <Text style={styles.erro} accessibilityLiveRegion="polite">
+              {erroPreco}
+            </Text>
+          )}
+        </View>
 
-      <View style={styles.linhaSituacao}>
-        <Text style={styles.rotulo}>Situação: {ativo ? 'Ativo' : 'Inativo'}</Text>
-        <Switch
-          value={ativo}
-          onValueChange={setAtivo}
-          accessibilityLabel="Produto ativo"
-        />
+        <View style={styles.linhaSituacao}>
+          <View style={styles.campo}>
+            <Text style={styles.rotulo}>Situação</Text>
+            <Text style={styles.valorSituacao}>{ativo ? 'Ativo' : 'Inativo'}</Text>
+          </View>
+          <Switch
+            value={ativo}
+            onValueChange={setAtivo}
+            trackColor={{ false: cores.borda, true: cores.destaque }}
+            thumbColor={cores.texto}
+            accessibilityLabel="Produto ativo"
+          />
+        </View>
       </View>
 
       <Botao texto="Cadastrar produto" onPress={cadastrar} disabled={!podeCadastrar} />
 
       {!podeCadastrar && (
-        <Text style={styles.dica}>
-          Preencha nome e preço válidos para liberar o cadastro.
-        </Text>
+        <Text style={styles.dica}>Preencha nome e preço válidos para liberar o cadastro.</Text>
       )}
     </Tela>
   );
 }
 
 const styles = StyleSheet.create({
+  cartao: {
+    padding: 16,
+    gap: 18,
+    borderRadius: 6,
+    backgroundColor: cores.superficie,
+  },
   campo: { gap: 6 },
-  rotulo: { fontSize: 16, fontWeight: '600', color: cores.texto },
+  rotulo: {
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+    color: cores.textoApoio,
+  },
   entrada: {
     minHeight: 48,
     paddingHorizontal: 12,
     fontSize: 16,
     borderWidth: 1,
     borderColor: cores.borda,
-    borderRadius: 8,
-    backgroundColor: cores.superficie,
+    borderRadius: 6,
+    backgroundColor: cores.superficieAlta,
     color: cores.texto,
   },
   entradaErro: { borderColor: cores.erro, borderWidth: 2 },
@@ -126,5 +145,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  dica: { fontSize: 14, color: cores.textoApoio },
+  valorSituacao: { fontSize: 16, fontWeight: '600', color: cores.texto },
+  dica: { fontSize: 14, color: cores.textoApoio, textAlign: 'center' },
 });
