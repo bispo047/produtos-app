@@ -1,6 +1,6 @@
 ﻿# Registro da sessão com IA — P1 Desenvolvimento Webmobile
 
-Sep 29, 2026 · @Maurício Monteiro de Paula Neri
+Sep 29, 2026 · @Arthur Pereira Bispo
 
 > **Observação:** esta é a sessão de estudo, feita em paralelo (22h54–23h17). O código entregue no repositório foi gerado e corrigido na sessão principal (21h06–23h35), registrada em `docs/uso-de-ia.md`. A estrutura de pastas e os nomes de arquivo citados aqui (`hooks/useProdutos.tsx`, `app/produtos/novo.tsx`, `catalogo-produtos.zip`) são da versão de estudo e não correspondem ao código final.
 
@@ -10,7 +10,7 @@ Este documento registra a sessão de uso de IA na Avaliação Individual P1 de D
 
 | Item | Valor |
 | --- | --- |
-| Aluno | Arthur Pereira Bispo — matrícula \[preencher\] |
+| Aluno | Arthur Pereira Bispo — matrícula 2022218480 |
 | Disciplina | 2773 - GRA.0734 - Desenvolvimento Webmobile (UFT, Câmpus Palmas) |
 | Docente | Prof. Dr. Jackson Gomes de Souza |
 | Avaliação | P1 individual — 6,0 pontos (implementação + defesa) |

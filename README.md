@@ -1,4 +1,4 @@
-# Vitrine — Avaliação P1 de Desenvolvimento Webmobile
+﻿# Vitrine — Avaliação P1 de Desenvolvimento Webmobile
 
 **Aluno:** [Arthur Pereira Bispo]
 **Matrícula:** [2022218480]
